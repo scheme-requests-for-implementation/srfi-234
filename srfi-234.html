@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SRFI 234: Topological Sort</title>
+    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
+    <link rel="stylesheet" href="https://srfi.schemers.org/srfi.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1"></head>
+  <body>
+    <h1><a href="https://srfi.schemers.org/"><img class="srfi-logo" src="https://srfi.schemers.org/srfi-logo.svg" alt="SRFI surfboard logo" /></a>234: ???title???</h1>
+
+<p>by John Cowan (text), Arvydas Silanskas (code), Shiro Kawai (original version)</p>
+
+<h2 id="status">Status</h2>
+
+<p style="color: red;">For editor's use only.  Please do not edit this section.</p>
+
+<p>??? the draft/final/withdrawn status of the SRFI, information on how
+to subscribe to its mailing list, and important dates in its history.
+The editor will add this section.</p>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>
+Topological sorting is an algorithm that takes a graph consisting of
+nodes and other nodes that depend on them, forming a partial order,
+and returns a list representing a total ordering of the graph.
+If the graph is cyclic, the topological sort will fail, and an
+error will be signaled.
+</p>
+
+<h2 id="issues">Issues</h2>
+
+<p>None at present.</p>
+
+<h2 id="rationale">Rationale</h2>
+
+<p>Consider the following graph representing steps to be performed:</p>
+
+<img src="Directed_acyclic_graph_2.svg">
+
+<p>This graph means that (among other things) steps 5 and 7 must be
+performed before step 11, and step 11 must be performed before steps 2, 9,
+and 10.  By topologically sorting this graph, we get one possible total
+ordering of the steps that satisfies the partial order.</p>
+
+<h2 id="specification">Specification</h2>
+
+<p><code>(topological-sort </code><em>graph</em><code>)</code><br>
+<code>(topological-sort </code><em>graph =</em><code>)</code></p>
+<p><em>Topologically sorts <em>graph</em>,
+which is a list of sublists.  Each sublist is of the form
+<code>(</code><em>node dependency dependency</em> ...<code>)</code>,
+meaning that <em>dependencies</em> are dependent on <em>node</em>.
+The optional argument <em>=</em> specifies the identity relation
+between nodes; it defaults to <code>eqv?</code>.</p>
+<p>It is an error if the same node (in the sense of <em>=</em>) appears
+in more than one sublist.<p>
+<p>If <em>graph</em> is circular, an error satisfying
+<code>circular-graph?</code> is signaled.</p>
+<p>The graph shown above can be represented as
+<code>((5 11) (7 11 8) (3 8 10) (11 2 9 10) (8 9))</code>.
+
+
+<h2 id="implementation">Implementation</h2>
+
+<p>The sample implementation is available in the SRFI 234 repository.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+
+<p>Credit is due to the members of the SRFI 234 mailing list.</p>
+
+<p>
+The graph is in the public domain and is available at
+<https://upload.wikimedia.org/wikipedia/commons/0/03/Directed_acyclic_graph_2.svg>.
+</p>
+
+<h2 id="copyright">Copyright</h2>
+<p>&copy; 2022 John Cowan, Arvydas Silanskas, Shiro Kawai.</p>
+
+<p>
+  Permission is hereby granted, free of charge, to any person
+  obtaining a copy of this software and associated documentation files
+  (the "Software"), to deal in the Software without restriction,
+  including without limitation the rights to use, copy, modify, merge,
+  publish, distribute, sublicense, and/or sell copies of the Software,
+  and to permit persons to whom the Software is furnished to do so,
+  subject to the following conditions:</p>
+
+<p>
+  The above copyright notice and this permission notice (including the
+  next paragraph) shall be included in all copies or substantial
+  portions of the Software.</p>
+<p>
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.</p>
+
+  <hr>
+  <address>Editor: <a href="mailto:srfi-editors+at+srfi+dot+schemers+dot+org">Arthur A. Gleckler</a></address></body></html>
