@@ -76,6 +76,5 @@
                         (not (zero? (cdr e))))
                       table)))
     (unless (null? rest)
-;      (raise (make-circular-graph "graph has circular dependency" (map car rest)))))
-      (raise (make-circular-object "graph has circular dependency" (map car rest))))))
+      (raise (make-circular-graph "graph has circular dependency" (map car rest)))))
   (reverse result))

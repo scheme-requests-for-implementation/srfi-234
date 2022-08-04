@@ -1,5 +1,4 @@
-(define-library
-    (toposort)
+(define-library (toposort)
     (import
         (scheme base)
         (scheme case-lambda)

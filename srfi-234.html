@@ -48,7 +48,7 @@ ordering of the steps that satisfies the partial order.</p>
 
 <p><code>(topological-sort </code><em>graph</em><code>)</code><br>
 <code>(topological-sort </code><em>graph =</em><code>)</code></p>
-<p><em>Topologically sorts <em>graph</em>,
+<p>Topologically sorts <em>graph</em>,
 which is a list of sublists.  Each sublist is of the form
 <code>(</code><em>node dependency dependency</em> ...<code>)</code>,
 meaning that <em>dependencies</em> are dependent on <em>node</em>.
@@ -60,7 +60,10 @@ in more than one sublist.<p>
 <code>circular-graph?</code> is signaled.</p>
 <p>The graph shown above can be represented as
 <code>((5 11) (7 11 8) (3 8 10) (11 2 9 10) (8 9))</code>.
-
+One possible result of applying `topological-sort` to this graph
+is the list <code>(3 7 5 11 2 8 10 9)</code>, meaning that
+performing steps 3, 7, 5, ..., 10, 9 in that order will satisfy
+the partial ordering of the graph.</p>
 
 <h2 id="implementation">Implementation</h2>
 
