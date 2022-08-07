@@ -1,6 +1,6 @@
 ;;; Code adapted from gauche https://github.com/shirok/Gauche/blob/master/lib/util/toposort.scm :
 ;;;
-;;; toposort.scm - topological sorting
+;;; srfi-234.scm - topological sorting
 ;;;
 ;;;  Written by Shiro Kawai (shiro@acm.org)  2001
 ;;;  Public Domain..  I guess lots of Scheme programmers have already

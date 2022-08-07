@@ -1,4 +1,4 @@
-(define-library (toposort)
+(define-library (srfi 234)
     (import
         (scheme base)
         (scheme case-lambda)

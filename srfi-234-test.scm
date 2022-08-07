@@ -1,16 +1,16 @@
 (cond-expand
   (guile
    (import (scheme base)
-           (toposort)
+           (srfi 234)
            (srfi srfi-64)))
   (chibi
    (import (scheme base)
-           (toposort)
+           (srfi 234)
            (rename (except (chibi test) test-equal)
                    (test test-equal))))
   (else
    (import (scheme base)
-           (toposort)
+           (srfi 234)
            (srfi 64))))
 
 
@@ -35,7 +35,12 @@
  (lambda (cont)
    (with-exception-handler
        (lambda (err)
+         (test-equal (circular-graph? err))
          (test-equal "graph has circular dependency" (circular-graph-message err))
+         (test-assert
+           (or
+             (equal? (circular-graph-cycle err) '(a b))
+             (equal? (circular-graph-cycle err) '(b a))))
          (cont #t))
      (lambda ()
        (topological-sort '((a b)
