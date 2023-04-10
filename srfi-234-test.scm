@@ -14,7 +14,7 @@
            (srfi 64))))
 
 
-(test-begin "toposort")
+(test-begin "srfi-234")
 
 (test-equal
     '(a b d c)
@@ -35,7 +35,7 @@
  (lambda (cont)
    (with-exception-handler
        (lambda (err)
-         (test-equal (circular-graph? err))
+         (test-equal #t (circular-graph? err))
          (test-equal "graph has circular dependency" (circular-graph-message err))
          (test-assert
            (or

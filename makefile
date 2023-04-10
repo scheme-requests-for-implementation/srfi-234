@@ -1,18 +1,25 @@
-.PHONY: test-gauche test-kawa test-chibi test-chicken
+# test-chicken not included, because I had problems installing r7rs for chicken
+all: test-gauche test-kawa test-guile test-chibi
+.PHONY: test-gauche test-kawa test-guile test-chibi test-chicken
 
 test-gauche:
-	gosh -I . toposort-test.scm
+	gosh -I . srfi-234-test.scm
 
 test-kawa:
-	cp toposort.sld toposort.scm
-	kawa toposort-test.scm
-	rm toposort.scm
+	cp srfi/234.sld srfi/234.scm
+	kawa srfi-234-test.scm
+	rm srfi/234.scm
+
+test-guile:
+	cp srfi/234.sld srfi/srfi-234.scm
+	guile -L . srfi-234-test.scm
+	rm srfi/srfi-234.scm
 
 test-chibi:
-	chibi-scheme toposort-test.scm
+	chibi-scheme srfi-234-test.scm
 
 test-chicken:
-	csc -R r7rs -X r7rs -sJ -o toposort.so toposort.sld
-	csi -I . -R r7rs -s toposort-test.scm
-	rm toposort.so
-	rm toposort.import.scm
+	csc -R r7rs -X r7rs -sJ -o srfi/srfi-234.so srfi/234.sld
+	csi -I . -s srfi-234-test.scm
+	rm srfi/srfi-234.so
+	rm srfi/srfi-234.import.scm

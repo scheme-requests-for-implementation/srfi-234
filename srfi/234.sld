@@ -7,4 +7,4 @@
             circular-graph?
             circular-graph-message
             circular-graph-cycle)
-    (include "toposort-impl.scm"))
+    (include "234-impl.scm"))
