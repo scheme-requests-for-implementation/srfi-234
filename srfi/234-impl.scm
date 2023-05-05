@@ -78,3 +78,22 @@
     (unless (null? rest)
       (raise (make-circular-graph "graph has circular dependency" (map car rest)))))
   (reverse result))
+
+;; convert an edgelist '((a b) (a c) (b e)) to a graph '((a b c) (b e))
+(define edgelist->graph
+  (case-lambda
+    ((edgelist) (edgelist->graph-impl edgelist eqv?))
+    ((edgelist eq) (edgelist->graph-impl edgelist eq))))
+(define (edgelist->graph-impl edgelist eq)
+  (let loop ((graph '()) (edges edgelist))
+    (cond
+     ((null? edges) (reverse! graph))
+     ((assoc (car (car edges)) graph)
+      (let* ((edge (car edges))
+             (left (car edge))
+             (graph-entry (assoc left graph))
+             (right (car (cdr edge))))
+        (set-cdr! (cdr graph-entry) (list right))
+        (loop graph (cdr edges))))
+     ;; use apply list to break up immutable pairs
+     (else (loop (cons (apply list (car edges)) graph) (cdr edges))))))

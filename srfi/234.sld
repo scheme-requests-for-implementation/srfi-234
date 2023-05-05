@@ -6,5 +6,6 @@
     (export topological-sort
             circular-graph?
             circular-graph-message
-            circular-graph-cycle)
+            circular-graph-cycle
+            edgelist->graph)
     (include "234-impl.scm"))

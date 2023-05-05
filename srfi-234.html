@@ -77,9 +77,15 @@ is the list <code>(3 7 5 11 2 8 10 9)</code>, meaning that
 performing steps 3, 7, 5, ..., 10, 9 in that order will satisfy
 the partial ordering of the graph.</p>
 
+<p><code>(edgelist-&gt;graph </code><em>edgelist</em><code>)</code><br>
+<code>(edgelist-&gt;graph </code><em>edgelist =</em><code>)</code></p>
+
+<p>Convert an edgelist <code>'((a b) (a c) (b e))</code> to a graph <code>'((a b c) (b e))</code></p>
+
 <h2 id="implementation">Implementation</h2>
 
 <p>The sample implementation is available in the <a href="https://github.com/scheme-requests-for-implementation/srfi-234">SRFI 234 repository</a> repository.
+
 <h2 id="acknowledgements">Acknowledgements</h2>
 
 <p>Credit is due to the members of the SRFI 234 mailing list.</p>
