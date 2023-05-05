@@ -60,16 +60,20 @@ ordering of the steps that satisfies the partial order.</p>
 
 <p><code>(topological-sort </code><em>graph</em><code>)</code><br>
 <code>(topological-sort </code><em>graph =</em><code>)</code></p>
+
 <p>Topologically sorts <em>graph</em>,
 which is a list of connections.  Each connection is a list of the form
 <code>(</code><em>node dependency dependency</em> ...<code>)</code>,
 meaning that <em>dependencies</em> are dependent on <em>node</em>.
 The optional argument <em>=</em> specifies the identity relation
 between nodes; it defaults to <code>eqv?</code>.</p>
+
 <p>It is an error if the same node (in the sense of <em>=</em>) appears
-in more than one connection.<p>
+at the head  of more than one connection.<p>
+
 <p>If <em>graph</em> is circular, an error satisfying
 <code>circular-graph?</code> is signaled.</p>
+
 <p>The graph shown above can be represented as
 <code>((5 11) (7 11 8) (3 8 10) (11 2 9 10) (8 9))</code>.
 One possible result of applying `topological-sort` to this graph
