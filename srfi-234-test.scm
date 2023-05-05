@@ -31,6 +31,10 @@
                       ("d" "c"))
                     string=?))
 
+(test-equal
+    '((a b c) (b e))
+  (edgelist->graph '((a b) (a c) (b e))))
+
 (call/cc
  (lambda (cont)
    (with-exception-handler
