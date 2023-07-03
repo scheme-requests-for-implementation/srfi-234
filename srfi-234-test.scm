@@ -2,15 +2,18 @@
   (guile
    (import (scheme base)
            (srfi 234)
+           (srfi 1)
            (srfi srfi-64)))
   (chibi
    (import (scheme base)
            (srfi 234)
+           (srfi 1)
            (rename (except (chibi test) test-equal)
                    (test test-equal))))
   (else
    (import (scheme base)
            (srfi 234)
+           (srfi 1)
            (srfi 64))))
 
 
@@ -38,6 +41,28 @@
 (test-equal
     '((a b c) (b e))
   (edgelist/inverted->graph '((b a) (c a) (e b))))
+
+(define (permutations edgelist)
+  (if (null? edgelist) '(())
+      (apply append
+             (map (lambda (edge)
+                    (map (lambda (permutation)
+                           (cons edge permutation))
+                         (permutations (delete edge edgelist))))
+                  edgelist))))
+
+(test-equal #t
+  (every (lambda (edgelist)
+           (let* ((graph (edgelist->graph edgelist))
+                  (order (topological-sort graph equal?)))
+             (cond
+              ((equal? order '(top left right bottom)) #t)
+              ((equal? order '(top right left bottom)) #t)
+              (else order))))
+         (permutations '((top left) (top right) (left bottom) (right bottom)))))
+
+(test-equal '(libnewsboat regex-rs strprintf)
+  (topological-sort (edgelist->graph '((libnewsboat strprintf) (libnewsboat regex-rs) (regex-rs strprintf)))))
 
 (call/cc
  (lambda (cont)
