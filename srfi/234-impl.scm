@@ -97,3 +97,22 @@
         (loop graph (cdr edges))))
      ;; use apply list to break up immutable pairs
      (else (loop (cons (apply list (car edges)) graph) (cdr edges))))))
+
+;; convert an inverted edgelist '((b a) (c a) (e b)) to a graph '((a b c) (b e))
+(define edgelist/inverted->graph
+  (case-lambda
+    ((edgelist) (edgelist/inverted->graph-impl edgelist eqv?))
+    ((edgelist eq) (edgelist/inverted->graph-impl edgelist eq))))
+(define (edgelist/inverted->graph-impl edgelist eq)
+  (let loop ((graph '()) (edges edgelist))
+    (cond
+     ((null? edges) (reverse! graph))
+     ((assoc (car (cdr (car edges))) graph)
+      (let* ((edge (car edges))
+             (left (car (cdr edge)))
+             (graph-entry (assoc left graph))
+             (right (car edge)))
+        (set-cdr! (cdr graph-entry) (list right))
+        (loop graph (cdr edges))))
+     ;; reverse instead of reverse! to avoid immutable lists
+     (else (loop (cons (reverse (car edges)) graph) (cdr edges))))))

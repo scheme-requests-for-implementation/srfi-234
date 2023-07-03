@@ -35,6 +35,10 @@
     '((a b c) (b e))
   (edgelist->graph '((a b) (a c) (b e))))
 
+(test-equal
+    '((a b c) (b e))
+  (edgelist/inverted->graph '((b a) (c a) (e b))))
+
 (call/cc
  (lambda (cont)
    (with-exception-handler
