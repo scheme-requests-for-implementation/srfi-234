@@ -56,6 +56,9 @@ performed before step 11, and step 11 must be performed before steps 2, 9,
 and 10.  By topologically sorting this graph, we get one possible total
 ordering of the steps that satisfies the partial order.</p>
 
+<p>The graph structure uses an efficient representation for graphs
+where a small number of dependencies lead to many dependents.</p>
+
 <h2 id="specification">Specification</h2>
 
 <p><code>(topological-sort </code><em>graph</em><code>)</code><br>
