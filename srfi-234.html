@@ -89,6 +89,11 @@ the partial ordering of the graph.</p>
 
 <p>Convert an edgelist <code>'((a b) (a c) (b e))</code> to a graph <code>'((a b c) (b e))</code></p>
 
+<p><code>(edgelist/inverted-&gt;graph </code><em>edgelist</em><code>)</code><br>
+<code>(edgelist/inverted-&gt;graph </code><em>edgelist =</em><code>)</code></p>
+
+<p>Convert an edgelist <code>'((b a) (c a) (e b))</code> to the inverted graph <code>'((a b c) (b e))</code></p>
+
 <h2 id="implementation">Implementation</h2>
 
 <p>The sample implementation is available in the <a href="https://github.com/scheme-requests-for-implementation/srfi-234">SRFI 234 repository</a> repository.
