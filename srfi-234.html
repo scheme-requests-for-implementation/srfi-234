@@ -56,6 +56,9 @@ performed before step 11, and step 11 must be performed before steps 2, 9,
 and 10.  By topologically sorting this graph, we get one possible total
 ordering of the steps that satisfies the partial order.</p>
 
+<p>The graph structure uses an efficient representation for graphs
+where a small number of dependencies lead to many dependents.</p>
+
 <h2 id="specification">Specification</h2>
 
 <p><code>(topological-sort </code><em>graph</em><code>)</code><br>
@@ -63,8 +66,8 @@ ordering of the steps that satisfies the partial order.</p>
 
 <p>Topologically sorts <em>graph</em>,
 which is a list of connections.  Each connection is a list of the form
-<code>(</code><em>node dependency dependency</em> ...<code>)</code>,
-meaning that <em>dependencies</em> are dependent on <em>node</em>.
+<code>(</code><em>node dependent dependent</em> ...<code>)</code>,
+meaning that <em>dependents</em> are dependent on <em>node</em>.
 The optional argument <em>=</em> specifies the identity relation
 between nodes; it defaults to <code>eqv?</code>.</p>
 
@@ -85,6 +88,11 @@ the partial ordering of the graph.</p>
 <code>(edgelist-&gt;graph </code><em>edgelist =</em><code>)</code></p>
 
 <p>Convert an edgelist <code>'((a b) (a c) (b e))</code> to a graph <code>'((a b c) (b e))</code></p>
+
+<p><code>(edgelist/inverted-&gt;graph </code><em>edgelist</em><code>)</code><br>
+<code>(edgelist/inverted-&gt;graph </code><em>edgelist =</em><code>)</code></p>
+
+<p>Convert an edgelist <code>'((b a) (c a) (e b))</code> to the inverted graph <code>'((a b c) (b e))</code></p>
 
 <h2 id="implementation">Implementation</h2>
 
