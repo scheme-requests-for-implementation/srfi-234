@@ -39,9 +39,38 @@
   (edgelist->graph '((a b) (a c) (b e))))
 
 (test-equal
+    '((a b) (a c) (b e))
+  (graph->edgelist '((a b c) (b e))))
+
+(test-equal
     '((a b c) (b e))
   (edgelist/inverted->graph '((b a) (c a) (e b))))
 
+(test-equal
+    '((b a) (c a) (e b))
+  (graph->edgelist/inverted '((a b c) (b e))))
+
+(test-equal
+    '((0 1) (1 2) (2 0) (3 1 2 4) (4 3 5) (5 2 6) (6 5) (7 4 6 7))
+   (edgelist->graph '((0 1)
+                      (1 2)
+                      (2 0)
+                      (3 1) (3 2) (3 4)
+                      (4 3) (4 5)
+                      (5 2) (5 6)
+                      (6 5)
+                      (7 4) (7 6) (7 7))))
+
+(test-equal
+    '((1 0 3) (2 1 3 5) (0 2) (4 3 7) (3 4) (5 4 6) (6 5 7) (7 7))
+   (edgelist/inverted->graph '((0 1)
+                               (1 2)
+                               (2 0)
+                               (3 1) (3 2) (3 4)
+                               (4 3) (4 5)
+                               (5 2) (5 6)
+                               (6 5)
+                               (7 4) (7 6) (7 7))))
 (define (permutations edgelist)
   (if (null? edgelist) '(())
       (apply append

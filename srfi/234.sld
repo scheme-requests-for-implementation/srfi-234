@@ -8,5 +8,7 @@
             circular-graph-message
             circular-graph-cycle
             edgelist->graph
-            edgelist/inverted->graph)
+            edgelist/inverted->graph
+            graph->edgelist
+            graph->edgelist/inverted)
     (include "234-impl.scm"))
