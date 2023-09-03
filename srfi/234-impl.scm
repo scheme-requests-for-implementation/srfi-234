@@ -93,7 +93,11 @@
              (left (car edge))
              (graph-entry (assoc left graph))
              (right (car (cdr edge))))
-        (set-cdr! (cdr graph-entry) (list right))
+        ;; adjust the right-most cdr
+        (let lp ((entry graph-entry))
+          (if (null? (cdr entry))
+              (set-cdr! entry (list right))
+              (lp (cdr entry))))
         (loop graph (cdr edges))))
      ;; use apply list to break up immutable pairs
      (else (loop (cons (apply list (car edges)) graph) (cdr edges))))))
@@ -112,7 +116,11 @@
              (left (car (cdr edge)))
              (graph-entry (assoc left graph))
              (right (car edge)))
-        (set-cdr! (cdr graph-entry) (list right))
+        ;; adjust the right-most cdr
+        (let lp ((entry graph-entry))
+          (if (null? (cdr entry))
+              (set-cdr! entry (list right))
+              (lp (cdr entry))))
         (loop graph (cdr edges))))
      ;; reverse instead of reverse! to avoid immutable lists
      (else (loop (cons (reverse (car edges)) graph) (cdr edges))))))
