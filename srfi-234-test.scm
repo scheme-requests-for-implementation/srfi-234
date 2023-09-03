@@ -39,8 +39,16 @@
   (edgelist->graph '((a b) (a c) (b e))))
 
 (test-equal
+    '((a b) (a c) (b e))
+  (graph->edgelist '((a b c) (b e))))
+
+(test-equal
     '((a b c) (b e))
   (edgelist/inverted->graph '((b a) (c a) (e b))))
+
+(test-equal
+    '((b a) (c a) (e b))
+  (graph->edgelist/inverted '((a b c) (b e))))
 
 (test-equal
     '((0 1) (1 2) (2 0) (3 1 2 4) (4 3 5) (5 2 6) (6 5) (7 4 6 7))
