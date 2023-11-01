@@ -79,8 +79,47 @@
       (raise (make-circular-graph "graph has circular dependency" (map car rest)))))
   (reverse result))
 
-;; Calculate the connected components from a graph
-(define (connected-components graph) #f)
+;; Calculate the connected components from a graph of in-neighbors
+;; implements Kosaraju's algorithm: https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm
+(define (connected-components graph)
+  (define nodes-with-inbound-links (map car graph))
+  ;; graph of out-neighbors
+  (define graph/inverted (edgelist->graph (graph->edgelist/inverted graph)))
+  (define nodes-with-outbound-links (map car graph/inverted))
+  ;; for simplicity this uses a list of nodes to query for membership. This is expensive.
+  (define visited '())
+  (define vertex-list '())
+  ;; create vertex-list sorted with outbound elements first
+  (define (visit! node)
+    (cond ((member node visited) '())
+          (else
+           ;; mark as visited before traversing
+           (set! visited (cons node visited))
+           ;; this uses the graph: the outbound connections
+           (let ((node-in-graph (assoc node graph)))
+             (when node-in-graph
+               (for-each visit! (cdr node-in-graph))))
+           ;; add to list after traversing
+           (set! vertex-list (cons node vertex-list)))))
+  ;; for simplicity this uses a list of nodes to query for membership. This is expensive.
+  (define in-component '())
+  (define components '())
+  ;; assign nodes to their components
+  (define (assign! u root)
+    (unless (member u in-component)
+      (set! in-component (cons u in-component))
+      (set! components (cons (cons u (car components)) (cdr components)))
+      ;; this uses the graph/inverted: the inbound connections
+      (let ((node-in-graph (assoc u graph/inverted)))
+        (when node-in-graph
+          (for-each (cut assign! <> root) (cdr node-in-graph))))))
+  (define (assign-as-component! u)
+    (unless (member u in-component)
+      (set! components (cons '() components))
+      (assign! u u)))
+  (for-each visit! nodes-with-outbound-links)
+  (for-each assign-as-component! vertex-list)
+  components)
 
 ;; convert an edgelist '((a b) (a c) (b e)) to a graph '((a b c) (b e))
 (define edgelist->graph
