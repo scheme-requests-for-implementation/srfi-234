@@ -79,6 +79,9 @@
       (raise (make-circular-graph "graph has circular dependency" (map car rest)))))
   (reverse result))
 
+;; Calculate the connected components from a graph
+(define (connected-components graph) #f)
+
 ;; convert an edgelist '((a b) (a c) (b e)) to a graph '((a b c) (b e))
 (define edgelist->graph
   (case-lambda

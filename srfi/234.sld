@@ -10,5 +10,6 @@
             edgelist->graph
             edgelist/inverted->graph
             graph->edgelist
-            graph->edgelist/inverted)
+            graph->edgelist/inverted
+            connected-components)
     (include "234-impl.scm"))
