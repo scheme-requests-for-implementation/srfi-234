@@ -73,7 +73,7 @@
                                (7 4) (7 6) (7 7))))
 
 (test-equal
-    '((0 1 2) (3 4) (5 6) (7))
+    '((2 0 1) (6 5) (3 4) (7))
   (connected-components
    (edgelist->graph '((0 1)
                       (1 2)
