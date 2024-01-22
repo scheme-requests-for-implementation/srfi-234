@@ -1,4 +1,6 @@
 
+# SPDX-FileCopyrightText: 2024 John Cowan and Arne Babenhauserheide
+# SPDX-License-Identifier: MIT
 * SRFI 234: Topological Sorting
 
 ** by John Cowan and Arne Babenhauserheide
