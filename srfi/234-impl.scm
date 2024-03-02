@@ -16,6 +16,11 @@
   (cycle circular-graph-cycle))
 
 ;;  nodes : a list of (<from> <to0> <to1> ...)
+(define (topological-sort/exception . args)
+  (let-values (((result message cycle) (apply topological-sort args)))
+    (or result
+        (raise (make-circular-graph message cycle)))))
+
 (define topological-sort
   (case-lambda
     ((nodes) (topological-sort-impl nodes eqv?))
@@ -75,9 +80,9 @@
   (let ((rest (filter (lambda (e)
                         (not (zero? (cdr e))))
                       table)))
-    (unless (null? rest)
-      (raise (make-circular-graph "graph has circular dependency" (map car rest)))))
-  (reverse result))
+    (if (null? rest)
+        (values (reverse result) #f #f)
+        (values #f "graph has circular dependency" (map car rest)))))
 
 ;; Calculate the connected components from a graph of in-neighbors
 ;; implements Kosaraju's algorithm: https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm

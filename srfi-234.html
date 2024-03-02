@@ -67,11 +67,17 @@ meaning that <em>dependents</em> are dependent on <em>node</em>.
 The optional argument <em>=</em> specifies the identity relation
 between nodes; it defaults to <code>eqv?</code>.</p>
 
+<p>Returns the list of topologically sorted nodes or <code>#f</code>
+if the graph cannot be sorted topologically.</p>
+
+<p>If <em>graph</em> is circular, <code>topological-sort</code> may
+return <code>values</code> where the second value is an error message
+and the third value provides information about at least one cycle. If
+a second and third value are provided outside error conditions, they
+must both be <code>#f</code>.</p>
+
 <p>It is an error if the same node (in the sense of <em>=</em>) appears
 at the head  of more than one connection.<p>
-
-<p>If <em>graph</em> is circular, an error satisfying
-<code>circular-graph?</code> is signaled.</p>
 
 <p>The graph shown above can be represented as
 <code>((5 11) (7 11 8) (3 8 10) (11 2 9 10) (8 9))</code>.
@@ -79,6 +85,14 @@ One possible result of applying `topological-sort` to this graph
 is the list <code>(3 7 5 11 2 8 10 9)</code>, meaning that
 performing steps 3, 7, 5, ..., 10, 9 in that order will satisfy
 the partial ordering of the graph.</p>
+
+<p><code>(topological-sort/exception </code><em>graph</em><code>)</code><br>
+<code>(topological-sort/exception </code><em>graph =</em><code>)</code></p>
+
+<p>Returns the sorted nodes from <code>topologica-sort</code> when
+there are no cycles, but if <em>graph</em> is circular, an error
+satisfying
+<code>circular-graph?</code> is signaled.</p>
 
 <p><code>(edgelist-&gt;graph </code><em>edgelist</em><code>)</code><br>
 <code>(edgelist-&gt;graph </code><em>edgelist =</em><code>)</code></p>
