@@ -65,7 +65,7 @@ which is a list of connections.  Each connection is a list of the form
 <code>(</code><em>node dependent dependent</em> ...<code>)</code>,
 meaning that <em>dependents</em> are dependent on <em>node</em>.
 The optional argument <em>=</em> specifies the identity relation
-between nodes; it defaults to <code>eqv?</code>.</p>
+between nodes; it defaults to <code>equal?</code>.</p>
 
 <p>Returns the list of topologically sorted nodes or <code>#f</code>
 if the graph cannot be sorted topologically.</p>
@@ -97,12 +97,18 @@ satisfying
 <p><code>(edgelist-&gt;graph </code><em>edgelist</em><code>)</code><br>
 <code>(edgelist-&gt;graph </code><em>edgelist =</em><code>)</code></p>
 
-<p>Convert an edgelist <code>'((a b) (a c) (b e))</code> to a graph <code>'((a b c) (b e))</code></p>
+<p>Convert an edgelist <code>'((a b) (a c) (b e))</code> to a
+graph <code>'((a b c) (b e))</code>. The optional argument <em>=</em>
+specifies the identity relation between nodes; it defaults
+to <code>equal?</code>.</p>
 
 <p><code>(edgelist/inverted-&gt;graph </code><em>edgelist</em><code>)</code><br>
 <code>(edgelist/inverted-&gt;graph </code><em>edgelist =</em><code>)</code></p>
 
-<p>Convert an edgelist <code>'((b a) (c a) (e b))</code> to the inverted graph <code>'((a b c) (b e))</code></p>
+<p>Convert an edgelist <code>'((b a) (c a) (e b))</code> to the
+inverted graph <code>'((a b c) (b e))</code>. The optional
+argument <em>=</em> specifies the identity relation between nodes; it
+defaults to <code>equal?</code>.</p>
 
 <p><code>(graph-&gt;edgelist </code><em>graph</em><code>)</code></p>
 

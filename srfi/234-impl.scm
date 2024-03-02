@@ -23,7 +23,7 @@
 
 (define topological-sort
   (case-lambda
-    ((nodes) (topological-sort-impl nodes eqv?))
+    ((nodes) (topological-sort-impl nodes equal?))
     ((nodes eq) (topological-sort-impl nodes eq))))
 
 (define (topological-sort-impl nodes eq)
@@ -129,7 +129,7 @@
 ;; convert an edgelist '((a b) (a c) (b e)) to a graph '((a b c) (b e))
 (define edgelist->graph
   (case-lambda
-    ((edgelist) (edgelist->graph-impl edgelist eqv?))
+    ((edgelist) (edgelist->graph-impl edgelist equal?))
     ((edgelist eq) (edgelist->graph-impl edgelist eq))))
 (define (edgelist->graph-impl edgelist eq)
   (let loop ((graph '()) (edges edgelist))
@@ -152,7 +152,7 @@
 ;; convert an inverted edgelist '((b a) (c a) (e b)) to a graph '((a b c) (b e))
 (define edgelist/inverted->graph
   (case-lambda
-    ((edgelist) (edgelist/inverted->graph-impl edgelist eqv?))
+    ((edgelist) (edgelist/inverted->graph-impl edgelist equal?))
     ((edgelist eq) (edgelist/inverted->graph-impl edgelist eq))))
 (define (edgelist/inverted->graph-impl edgelist eq)
   (let loop ((graph '()) (edges edgelist))
