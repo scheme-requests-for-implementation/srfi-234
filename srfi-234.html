@@ -94,6 +94,22 @@ there are no cycles, but if <em>graph</em> is circular, an error
 satisfying
 <code>circular-graph?</code> is signaled.</p>
 
+<p><code>(circular-graph? </code><em>exception</em><code>)</code></p>
+
+<p>Returns <code>#t</code> if the exception raised
+by <code>topological-sort/exception</code> signals a circular graph.</p>
+
+<p><code>(circular-graph-message </code><em>exception</em><code>)</code></p>
+
+<p>Returns the message of an exception
+matching <code>circular-graph?</code>.</p>
+
+<p><code>(circular-graph-cycle </code><em>exception</em><code>)</code></p>
+
+<p>Returns one circular structure from an exception
+matching <code>circular-graph?</code>. The <em>graph</em> may contain
+additional cycles.</p>
+
 <p><code>(edgelist-&gt;graph </code><em>edgelist</em><code>)</code><br>
 <code>(edgelist-&gt;graph </code><em>edgelist =</em><code>)</code></p>
 
