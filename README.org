@@ -1,5 +1,5 @@
 
-# SPDX-FileCopyrightText: 2024 John Cowan and Arne Babenhauserheide
+# SPDX-FileCopyrightText: 2024 Arthur A. Gleckler
 # SPDX-License-Identifier: MIT
 * SRFI 234: Topological Sorting
 

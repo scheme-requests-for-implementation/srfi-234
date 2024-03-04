@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <!-- SPDX-FileCopyrightText: 2024 John Cowan and Arne Babenhauserheide -->
+      <!-- SPDX-FileCopyrightText: 2024 Arthur A. Gleckler -->
       <!-- SPDX-License-Identifier: MIT -->
       <title>Topological Sorting</title>
       <link href="/admin.css" rel="stylesheet">
@@ -29,4 +29,4 @@
         <li><span class="firefox-column-workaround">
             <form method="POST" action="https://www.simplelists.com/subscribe.php">
               <div class="title">Unsubscribe from srfi-234 mailing list</div><input name="email" placeholder="email address" tabindex="5" type="email"><input class="submit" name="submit" tabindex="6" type="submit" value="Unsubscribe from srfi-234"><input type="hidden" name="action" value="unsubscribe"><input name="list" type="hidden" value="srfi-234@srfi.schemers.org"></form></span></li></ul>
-      <h2>Abstract</h2><p> Topological sorting is an algorithm that takes a graph consisting of nodes and other nodes that depend on them, forming a partial order, and returns a list representing a total ordering of the graph. If the graph is cyclic, the topological sort will fail, and an error will be signaled. </p></body></html>
+      <h2>Abstract</h2><p> Topological sorting is an algorithm that takes a graph consisting of nodes and other nodes that depend on them, forming a partial order, and returns a list representing a total ordering of the graph. If the graph is cyclic, the topological sort will fail. With the procedure <code>topological-sort</code>, failure results in returning <code>#false</code> and additional information is provided via multiple values. With <code>topological-sort/exception</code>, an error will be signalled on failure. This SRFI includes utilities to operate on simple edgelists. </p></body></html>
