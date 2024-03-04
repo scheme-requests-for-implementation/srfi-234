@@ -118,7 +118,7 @@
              (equal? (circular-graph-cycle err) '(b a))))
          (cont #t))
      (lambda ()
-       (topological-sort '((a b)
+       (topological-sort/exception '((a b)
                            (b a)))
        (test-assert #f)))))
 

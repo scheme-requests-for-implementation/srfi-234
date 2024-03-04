@@ -32,9 +32,13 @@ Babenhauserheide took over authorship in 2023.</p>
 <p>
 Topological sorting is an algorithm that takes a graph consisting of
 nodes and other nodes that depend on them, forming a partial order,
-and returns a list representing a total ordering of the graph.
-If the graph is cyclic, the topological sort will fail, and an
-error will be signaled.
+and returns a list representing a total ordering of the graph. If the
+graph is cyclic, the topological sort will fail. With the
+procedure <code>topological-sort</code>, failure results in
+returning <code>#false</code> and additional information is provided
+via multiple values. With <code>topological-sort/exception</code>, an
+error will be signalled on failure. This SRFI includes utilities to
+operate on simple edgelists.
 </p>
 
 <h2 id="issues">Issues</h2>
@@ -65,13 +69,19 @@ which is a list of connections.  Each connection is a list of the form
 <code>(</code><em>node dependent dependent</em> ...<code>)</code>,
 meaning that <em>dependents</em> are dependent on <em>node</em>.
 The optional argument <em>=</em> specifies the identity relation
-between nodes; it defaults to <code>eqv?</code>.</p>
+between nodes; it defaults to <code>equal?</code>.</p>
+
+<p>Returns the list of topologically sorted nodes or <code>#f</code>
+if the graph cannot be sorted topologically.</p>
+
+<p>If <em>graph</em> is circular, <code>topological-sort</code> may
+return <code>values</code> where the second value is an error message
+and the third value provides information about at least one cycle. If
+a second and third value are provided outside error conditions, they
+must both be <code>#f</code>.</p>
 
 <p>It is an error if the same node (in the sense of <em>=</em>) appears
 at the head  of more than one connection.<p>
-
-<p>If <em>graph</em> is circular, an error satisfying
-<code>circular-graph?</code> is signaled.</p>
 
 <p>The graph shown above can be represented as
 <code>((5 11) (7 11 8) (3 8 10) (11 2 9 10) (8 9))</code>.
@@ -80,15 +90,45 @@ is the list <code>(3 7 5 11 2 8 10 9)</code>, meaning that
 performing steps 3, 7, 5, ..., 10, 9 in that order will satisfy
 the partial ordering of the graph.</p>
 
+<p><code>(topological-sort/exception </code><em>graph</em><code>)</code><br>
+<code>(topological-sort/exception </code><em>graph =</em><code>)</code></p>
+
+<p>Returns the sorted nodes from <code>topologica-sort</code> when
+there are no cycles, but if <em>graph</em> is circular, an error
+satisfying
+<code>circular-graph?</code> is signaled.</p>
+
+<p><code>(circular-graph? </code><em>exception</em><code>)</code></p>
+
+<p>Returns <code>#t</code> if the exception raised
+by <code>topological-sort/exception</code> signals a circular graph.</p>
+
+<p><code>(circular-graph-message </code><em>exception</em><code>)</code></p>
+
+<p>Returns the message of an exception
+matching <code>circular-graph?</code>.</p>
+
+<p><code>(circular-graph-cycle </code><em>exception</em><code>)</code></p>
+
+<p>Returns one circular structure from an exception
+matching <code>circular-graph?</code>. The <em>graph</em> may contain
+additional cycles.</p>
+
 <p><code>(edgelist-&gt;graph </code><em>edgelist</em><code>)</code><br>
 <code>(edgelist-&gt;graph </code><em>edgelist =</em><code>)</code></p>
 
-<p>Convert an edgelist <code>'((a b) (a c) (b e))</code> to a graph <code>'((a b c) (b e))</code></p>
+<p>Convert an edgelist <code>'((a b) (a c) (b e))</code> to a
+graph <code>'((a b c) (b e))</code>. The optional argument <em>=</em>
+specifies the identity relation between nodes; it defaults
+to <code>equal?</code>.</p>
 
 <p><code>(edgelist/inverted-&gt;graph </code><em>edgelist</em><code>)</code><br>
 <code>(edgelist/inverted-&gt;graph </code><em>edgelist =</em><code>)</code></p>
 
-<p>Convert an edgelist <code>'((b a) (c a) (e b))</code> to the inverted graph <code>'((a b c) (b e))</code></p>
+<p>Convert an edgelist <code>'((b a) (c a) (e b))</code> to the
+inverted graph <code>'((a b c) (b e))</code>. The optional
+argument <em>=</em> specifies the identity relation between nodes; it
+defaults to <code>equal?</code>.</p>
 
 <p><code>(graph-&gt;edgelist </code><em>graph</em><code>)</code></p>
 
