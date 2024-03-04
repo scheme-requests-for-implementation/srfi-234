@@ -119,7 +119,7 @@
          (cont #t))
      (lambda ()
        (topological-sort/exception '((a b)
-                           (b a)))
+				     (b a)))
        (test-assert #f)))))
 
 (test-end)
