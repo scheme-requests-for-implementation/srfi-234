@@ -20,6 +20,6 @@ test-chibi:
 
 test-chicken:
 	csc -R r7rs -X r7rs -sJ -o srfi/srfi-234.so srfi/234.sld
-	csi -I . -s srfi-234-test.scm
+	csi -s srfi-234-test.scm
 	rm srfi/srfi-234.so
-	rm srfi/srfi-234.import.scm
+	rm srfi-234.import.scm

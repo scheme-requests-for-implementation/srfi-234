@@ -10,6 +10,12 @@
            (srfi 1)
            (rename (except (chibi test) test-equal)
                    (test test-equal))))
+  (chicken
+    (load "srfi/srfi-234.so")
+    (import (scheme base)
+            (srfi 234)
+            (srfi 1)
+            (srfi 64)))
   (else
    (import (scheme base)
            (srfi 234)

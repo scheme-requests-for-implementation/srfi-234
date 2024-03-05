@@ -1,0 +1,73 @@
+%%%% Starting test srfi-234
+Group begin: srfi-234
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: (a b d c)
+  expected-value: (a b d c)
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: ("a" "b" "d" "c")
+  expected-value: ("a" "b" "d" "c")
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: ((a b c) (b e))
+  expected-value: ((a b c) (b e))
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: ((a b) (a c) (b e))
+  expected-value: ((a b) (a c) (b e))
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: ((a b c) (b e))
+  expected-value: ((a b c) (b e))
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: ((b a) (c a) (e b))
+  expected-value: ((b a) (c a) (e b))
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: ((0 1) (1 2) (2 0) (3 1 2 4) (4 3 5) (5 2 6) (6 5) (7 4 6 7))
+  expected-value: ((0 1) (1 2) (2 0) (3 1 2 4) (4 3 5) (5 2 6) (6 5) (7 4 6 7))
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: ((1 0 3) (2 1 3 5) (0 2) (4 3 7) (3 4) (5 4 6) (6 5 7) (7 7))
+  expected-value: ((1 0 3) (2 1 3 5) (0 2) (4 3 7) (3 4) (5 4 6) (6 5 7) (7 7))
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: ((2 0 1) (6 5) (3 4) (7))
+  expected-value: ((2 0 1) (6 5) (3 4) (7))
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: #t
+  expected-value: #t
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: (libnewsboat regex-rs strprintf)
+  expected-value: (libnewsboat regex-rs strprintf)
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: #t
+  expected-value: #t
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: "graph has circular dependency"
+  expected-value: "graph has circular dependency"
+Test begin:
+Test end:
+  result-kind: pass
+  actual-value: #t
+Group end: srfi-234
+# of expected passes      14
