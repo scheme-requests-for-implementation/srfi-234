@@ -110,7 +110,7 @@ the partial ordering of the graph.</p>
 <p>Convert an edgelist <code>'((a b) (a c) (b e))</code> to a
 graph <code>'((a b c) (b e))</code>. The optional argument <em>asc</em>
 specifies the procedure to retrieve a dependency element; it defaults
-to <code>assoc</code>.</p>
+to <code>assoc</code>. When using eq? for the graph this should be assq.</p>
 
 <p><code>(edgelist/inverted-&gt;graph </code><em>edgelist</em><code>)</code><br>
 <code>(edgelist/inverted-&gt;graph </code><em>edgelist asc</em><code>)</code></p>
@@ -118,7 +118,7 @@ to <code>assoc</code>.</p>
 <p>Convert an edgelist <code>'((b a) (c a) (e b))</code> to the
 inverted graph <code>'((a b c) (b e))</code>. The optional argument <em>asc</em>
 specifies the procedure to retrieve a dependency element; it defaults
-to <code>assoc</code>.</p>
+to <code>assoc</code>. When using eq? for the graph this should be assq.</p>
 
 <p><code>(graph-&gt;edgelist </code><em>graph</em><code>)</code></p>
 
