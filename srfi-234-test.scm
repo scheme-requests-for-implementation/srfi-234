@@ -112,20 +112,4 @@
 (test-equal '(libnewsboat regex-rs strprintf)
   (topological-sort (edgelist->graph '((libnewsboat strprintf) (libnewsboat regex-rs) (regex-rs strprintf)))))
 
-(call/cc
- (lambda (cont)
-   (with-exception-handler
-       (lambda (err)
-         (test-equal #t (circular-graph? err))
-         (test-equal "graph has circular dependency" (circular-graph-message err))
-         (test-assert
-           (or
-             (equal? (circular-graph-cycle err) '(a b))
-             (equal? (circular-graph-cycle err) '(b a))))
-         (cont #t))
-     (lambda ()
-       (topological-sort/exception '((a b)
-				     (b a)))
-       (test-assert #f)))))
-
 (test-end)

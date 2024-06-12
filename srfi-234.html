@@ -37,9 +37,7 @@ and returns a list representing a total ordering of the graph. If the
 graph is cyclic, the topological sort will fail. With the
 procedure <code>topological-sort</code>, failure results in
 returning <code>#false</code> and additional information is provided
-via multiple values. With <code>topological-sort/exception</code>, an
-error will be signalled on failure. This SRFI includes utilities to
-operate on simple edgelists.
+via multiple values.
 </p>
 
 <h2 id="issues">Issues</h2>
@@ -90,30 +88,6 @@ One possible result of applying `topological-sort` to this graph
 is the list <code>(3 7 5 11 2 8 10 9)</code>, meaning that
 performing steps 3, 7, 5, ..., 10, 9 in that order will satisfy
 the partial ordering of the graph.</p>
-
-<p><code>(topological-sort/exception </code><em>graph</em><code>)</code><br>
-<code>(topological-sort/exception </code><em>graph =</em><code>)</code></p>
-
-<p>Returns the sorted nodes from <code>topologica-sort</code> when
-there are no cycles, but if <em>graph</em> is circular, an error
-satisfying
-<code>circular-graph?</code> is signaled.</p>
-
-<p><code>(circular-graph? </code><em>exception</em><code>)</code></p>
-
-<p>Returns <code>#t</code> if the exception raised
-by <code>topological-sort/exception</code> signals a circular graph.</p>
-
-<p><code>(circular-graph-message </code><em>exception</em><code>)</code></p>
-
-<p>Returns the message of an exception
-matching <code>circular-graph?</code>.</p>
-
-<p><code>(circular-graph-cycle </code><em>exception</em><code>)</code></p>
-
-<p>Returns one circular structure from an exception
-matching <code>circular-graph?</code>. The <em>graph</em> may contain
-additional cycles.</p>
 
 <p><code>(edgelist-&gt;graph </code><em>edgelist</em><code>)</code><br>
 <code>(edgelist-&gt;graph </code><em>edgelist =</em><code>)</code></p>
