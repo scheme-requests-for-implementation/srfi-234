@@ -85,6 +85,8 @@ and the third value provides information about at least one cycle. If
 a second and third value are provided outside error conditions, they
 must both be <code>#f</code>.</p>
 
+<p>If <em>=</em> is provided, it is used to check equality between nodes. The
+default is <code>equal?</code>.</p>
 <p>It is an error if the same node (in the sense of <em>=</em>) appears
 at the head  of more than one connection.</p>
 
