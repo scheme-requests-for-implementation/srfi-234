@@ -19,13 +19,4 @@ If you'd like to participate in the discussion of this SRFI, or report issues wi
 
 Thank you.
 
-To run the tests on Guix, you can use:
-
-#+begin_src bash
-guix shell gauche kawa chibi-scheme chicken chicken-srfi-13 chicken-srfi-14 chicken-srfi-1 -- make
-# To test only on guile
-make test-guile
-#+end_src
-
-
 [[mailto:srfi-editors@srfi.schemers.org][The SRFI Editors]]

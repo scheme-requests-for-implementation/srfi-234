@@ -1,9 +1,7 @@
 To run the tests on Guix, you can use:
 
 #+begin_src bash
-# chicken install does not work yet:
-# export CHICKEN_INSTALL_REPOSITORY=$HOME/.local/share/chicken
-# export CHICKEN_INSTALL_PREFIX=$HOME/.local/share/chicken
-# guix shell chicken chicken-srfi-1 chicken-srfi-13 chicken-srfi-14 -- chicken-install r7rs
 guix shell gauche kawa chibi-scheme chicken chicken-srfi-13 chicken-srfi-14 chicken-srfi-1 -- make
+# To test only on guile
+make test-guile
 #+end_src
