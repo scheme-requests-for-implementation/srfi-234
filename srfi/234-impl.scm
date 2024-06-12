@@ -10,13 +10,14 @@
 
 (define topological-sort
   (case-lambda
-    ((nodes) (topological-sort-impl nodes equal?))
-    ((nodes eq) (topological-sort-impl nodes eq))))
+    ((graph) (topological-sort-impl graph equal? #f))
+    ((graph eq) (topological-sort-impl graph eq #f))
+    ((graph eq nodes) (topological-sort-impl graph eq nodes))))
 
-(define (topological-sort-impl nodes eq)
+(define (topological-sort-impl graph eq nodes)
   (define table (map (lambda (n)
                        (cons (car n) 0))
-                     nodes))
+                     graph))
   (define queue '())
   (define result '())
 
@@ -33,12 +34,12 @@
                            (cons to 1)
                            table))))
         (cdr node)))
-     nodes))
+     graph))
 
   ;; traverse
   (define (traverse)
     (unless (null? queue)
-      (let ((n0 (assoc (car queue) nodes eq)))
+      (let ((n0 (assoc (car queue) graph eq)))
         (set! queue (cdr queue))
         (when n0
           (for-each

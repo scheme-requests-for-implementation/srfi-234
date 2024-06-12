@@ -56,19 +56,25 @@ and 10.  By topologically sorting this graph, we get one possible total
 ordering of the steps that satisfies the partial order.</p>
 
 <p>The graph structure uses an efficient representation for graphs
-where a small number of dependencies lead to many dependents.</p>
+  where a small number of dependencies lead to many dependents.</p>
+
+<p>For very large graphs or nodes which cannot be compared, the graph
+can be represented by index values into a nodes vector. This keeps the
+memory footprint of the graph small.</p>
 
 <h2 id="specification">Specification</h2>
 
 <p><code>(topological-sort </code><em>graph</em><code>)</code><br>
-<code>(topological-sort </code><em>graph =</em><code>)</code></p>
+<code>(topological-sort </code><em>graph =</em><code>)</code><br>
+<code>(topological-sort </code><em>graph = nodes</em><code>)</code></p>
 
 <p>Topologically sorts <em>graph</em>,
 which is a list of connections.  Each connection is a list of the form
 <code>(</code><em>node dependent dependent</em> ...<code>)</code>,
-meaning that <em>dependents</em> are dependent on <em>node</em>.
-The optional argument <em>=</em> specifies the identity relation
-between nodes; it defaults to <code>equal?</code>.</p>
+meaning that <em>dependents</em> are dependent on <em>node</em>. The
+optional argument <em>=</em> specifies the identity relation between
+nodes; it defaults to <code>equal?</code>. The optional
+argument <em>nodes</em> is a vector of node values.</p>
 
 <p>Returns the list of topologically sorted nodes or <code>#f</code>
 if the graph cannot be sorted topologically.</p>
