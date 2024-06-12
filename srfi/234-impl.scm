@@ -126,16 +126,16 @@
 ;; convert an edgelist '((a b) (a c) (b e)) to a graph '((a b c) (b e))
 (define edgelist->graph
   (case-lambda
-    ((edgelist) (edgelist->graph-impl edgelist equal?))
-    ((edgelist eq) (edgelist->graph-impl edgelist eq))))
-(define (edgelist->graph-impl edgelist eq)
+    ((edgelist) (edgelist->graph-impl edgelist assoc))
+    ((edgelist asc) (edgelist->graph-impl edgelist asc))))
+(define (edgelist->graph-impl edgelist asc)
   (let loop ((graph '()) (edges edgelist))
     (cond
      ((null? edges) (reverse! graph))
-     ((assoc (car (car edges)) graph)
+     ((asc (car (car edges)) graph)
       (let* ((edge (car edges))
              (left (car edge))
-             (graph-entry (assoc left graph))
+             (graph-entry (asc left graph))
              (right (car (cdr edge))))
         ;; adjust the right-most cdr
         (let lp ((entry graph-entry))
@@ -149,16 +149,16 @@
 ;; convert an inverted edgelist '((b a) (c a) (e b)) to a graph '((a b c) (b e))
 (define edgelist/inverted->graph
   (case-lambda
-    ((edgelist) (edgelist/inverted->graph-impl edgelist equal?))
-    ((edgelist eq) (edgelist/inverted->graph-impl edgelist eq))))
-(define (edgelist/inverted->graph-impl edgelist eq)
+    ((edgelist) (edgelist/inverted->graph-impl edgelist assoc))
+    ((edgelist asc) (edgelist/inverted->graph-impl edgelist asc))))
+(define (edgelist/inverted->graph-impl edgelist asc)
   (let loop ((graph '()) (edges edgelist))
     (cond
      ((null? edges) (reverse! graph))
-     ((assoc (car (cdr (car edges))) graph)
+     ((asc (car (cdr (car edges))) graph)
       (let* ((edge (car edges))
              (left (car (cdr edge)))
-             (graph-entry (assoc left graph))
+             (graph-entry (asc left graph))
              (right (car edge)))
         ;; adjust the right-most cdr
         (let lp ((entry graph-entry))
