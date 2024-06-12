@@ -69,7 +69,16 @@
                         (not (zero? (cdr e))))
                       table)))
     (if (null? rest)
-        (values (reverse result) #f #f)
+        (values
+         (if nodes
+             ;; replace indizes by node values
+             (let loop ((res '()) (result result))
+               (if (null? result)
+                   res
+                   (loop (cons (vector-ref nodes (car result)) res)
+                         (cdr result))))
+             (reverse result))
+         #f #f)
         (values #f "graph has circular dependency" (map car rest)))))
 
 ;; Calculate the connected components from a graph of in-neighbors
