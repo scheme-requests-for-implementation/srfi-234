@@ -8,19 +8,6 @@
 ;;;
 
 
-;; error object
-(define-record-type <circular-graph>
-  (make-circular-graph message cycle)
-  circular-graph?
-  (message circular-graph-message)
-  (cycle circular-graph-cycle))
-
-;;  nodes : a list of (<from> <to0> <to1> ...)
-(define (topological-sort/exception . args)
-  (let-values (((result message cycle) (apply topological-sort args)))
-    (or result
-        (raise (make-circular-graph message cycle)))))
-
 (define topological-sort
   (case-lambda
     ((nodes) (topological-sort-impl nodes equal?))
