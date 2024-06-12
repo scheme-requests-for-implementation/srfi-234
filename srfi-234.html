@@ -87,6 +87,13 @@ must both be <code>#f</code>.</p>
 
 <p>If <em>=</em> is provided, it is used to check equality between nodes. The
 default is <code>equal?</code>.</p>
+
+<p>If <em>nodes</em> is provided, the entries in the graph must be
+index values with which the actual nodes can be retrieved
+from <em>nodes</em> with <code>vector-ref</code>. These nodes can be
+used to process graphs of large size or whose nodes cannot be compared
+with <em>=</em>.</p>
+
 <p>It is an error if the same node (in the sense of <em>=</em>) appears
 at the head  of more than one connection.</p>
 
