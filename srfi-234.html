@@ -35,10 +35,12 @@ Babenhauserheide took over authorship in 2023.</p>
 Topological sorting is an algorithm that takes a graph consisting of
 nodes and other nodes that depend on them, forming a partial order,
 and returns a list representing a total ordering of the graph. If the
-graph is cyclic, the topological sort will fail. With the
-procedure <code>topological-sort</code>, failure results in
-returning <code>#false</code> and additional information is provided
-via multiple values.
+graph is cyclic, the topological sort will fail. The
+procedure <code>topological-sort</code> returns three values. If
+sorting succeeds, the first value contains the result and the second
+and third are <code>#false</code>. If sorting fails, the result
+is <code>#false</code> and the second and third value may provide
+additional information about the error.
 </p>
 
 <h2 id="issues">Issues</h2>
@@ -77,20 +79,22 @@ optional argument <em>=</em> specifies the identity relation between
 nodes; it defaults to <code>equal?</code>. The optional
 argument <em>nodes</em> is a vector of node values.</p>
 
-<p>Returns the list of topologically sorted nodes or <code>#f</code>
-if the graph cannot be sorted topologically.</p>
+<p>Returns three <code>values</code>. The first value is a list of
+topologically sorted nodes or <code>#false</code> if the graph cannot
+be sorted topologically.</p>
 
-<p>If <em>graph</em> is circular, <code>topological-sort</code> may
-return <code>values</code> where the second value is an error message
-and the third value provides information about at least one cycle. If
-a second and third value are provided outside error conditions, they
-must both be <code>#f</code>.</p>
+<p>If <em>graph</em> is circular, <code>topological-sort</code>
+returns <code>#false</code> as first value. Additionally the second
+<code>value</code> may be an error message and the
+third <code>value</code> may provide information about at least one
+cycle. Outside error conditions, the second and
+third <code>value</code> must both be <code>#false</code>.</p>
 
 <p>If <em>=</em> is provided, it is used to check equality between nodes. The
 default is <code>equal?</code>.</p>
 
 <p>If <em>nodes</em> is provided, the entries in the graph must be
-index values with which the actual nodes can be retrieved
+index keys with which the actual nodes can be retrieved
 from <em>nodes</em> with <code>vector-ref</code>. These nodes can be
 used to process graphs of large size or whose nodes cannot be compared
 with <em>=</em>.</p>
