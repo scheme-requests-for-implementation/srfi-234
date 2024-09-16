@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 John Cowan, Arne Babenhauserheide
+#
+# SPDX-License-Identifier: MIT
+
 # test-chicken not included, because I had problems installing r7rs for chicken
 all: test-gauche test-kawa test-guile test-chibi
 .PHONY: test-gauche test-kawa test-guile test-chibi test-chicken

@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Arne Babenhauserheide
+#
+# SPDX-License-Identifier: MIT
+
+
 To run the tests on Guix, you can use:
 
 #+begin_src bash

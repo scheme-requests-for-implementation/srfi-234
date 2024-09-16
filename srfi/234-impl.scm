@@ -1,9 +1,11 @@
+;;; SPDX-FileCopyrightText: 2024 Shiro Kawai, John Cowan, Arvydas Silanskas, Arne Babenhauserheide
+;;; SPDX-License-Identifier: MIT
+
 ;;; Code adapted from gauche https://github.com/shirok/Gauche/blob/master/lib/util/toposort.scm :
 ;;;
 ;;; srfi-234.scm - topological sorting
 ;;;
 ;;;  Written by Shiro Kawai (shiro@acm.org)  2001
-;;;             Arthur A. Gleckler           2022--2023
 ;;;             Arne Babenhauserheide        2023--2024
 ;;;  Public Domain.
 

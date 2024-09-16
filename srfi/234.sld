@@ -1,3 +1,6 @@
+;;; SPDX-FileCopyrightText: 2024 Shiro Kawai, John Cowan, Arvydas Silanskas, Arne Babenhauserheide
+;;; SPDX-License-Identifier: MIT
+
 (define-library (srfi 234)
     (import
         (scheme base)
