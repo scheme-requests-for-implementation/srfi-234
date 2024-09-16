@@ -14,7 +14,18 @@
     ((graph eq) (topological-sort-impl graph eq #f))
     ((graph eq nodes) (topological-sort-impl graph eq nodes))))
 
+(define topological-sort/details
+  (case-lambda
+    ((graph) (topological-sort-impl/details graph equal? #f))
+    ((graph eq) (topological-sort-impl/details graph eq #f))
+    ((graph eq nodes) (topological-sort-impl/details graph eq nodes))))
+
 (define (topological-sort-impl graph eq nodes)
+  (let-values (((v0 v1 v2)
+                (topological-sort-impl/details graph eq nodes)))
+    v0))
+
+(define (topological-sort-impl/details graph eq nodes)
   (define table (map (lambda (n)
                        (cons (car n) 0))
                      graph))

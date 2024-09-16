@@ -71,17 +71,27 @@ memory footprint of the graph small.</p>
 <code>(topological-sort </code><em>graph =</em><code>)</code><br>
 <code>(topological-sort </code><em>graph = nodes</em><code>)</code></p>
 
+<p><code>(topological-sort</code> returns only the
+first <code>value</code>
+from <code>(topological-sort/details</code>.</p>
+
+<p><code>(topological-sort/details </code><em>graph</em><code>)</code><br>
+<code>(topological-sort/details </code><em>graph =</em><code>)</code><br>
+<code>(topological-sort/details </code><em>graph = nodes</em><code>)</code></p>
+
 <p>Topologically sorts <em>graph</em>,
 which is a list of connections.  Each connection is a list of the form
 <code>(</code><em>node dependent dependent</em> ...<code>)</code>,
-meaning that <em>dependents</em> are dependent on <em>node</em>. The
-optional argument <em>=</em> specifies the identity relation between
-nodes; it defaults to <code>equal?</code>. The optional
+meaning that <em>dependents</em> are dependent on <em>node</em>.</p>
+
+<p>The optional argument <em>=</em> specifies the identity relation
+between nodes; it defaults to <code>equal?</code>. The optional
 argument <em>nodes</em> is a vector of node values.</p>
 
-<p>Returns three <code>values</code>. The first value is a list of
-topologically sorted nodes or <code>#false</code> if the graph cannot
-be sorted topologically.</p>
+<p><code>(topological-sort/details</code> returns
+three <code>values</code>. The first value is a list of topologically
+sorted nodes or <code>#false</code> if the graph cannot be sorted
+topologically.</p>
 
 <p>If <em>graph</em> is circular, <code>topological-sort</code>
 returns <code>#false</code> as first value. Additionally the second
