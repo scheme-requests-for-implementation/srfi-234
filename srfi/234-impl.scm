@@ -3,9 +3,9 @@
 ;;; srfi-234.scm - topological sorting
 ;;;
 ;;;  Written by Shiro Kawai (shiro@acm.org)  2001
-;;;  Public Domain..  I guess lots of Scheme programmers have already
-;;;  written similar code.
-;;;
+;;;             Arthur A. Gleckler           2022--2023
+;;;             Arne Babenhauserheide        2023--2024
+;;;  Public Domain.
 
 
 (define topological-sort
