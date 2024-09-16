@@ -6,10 +6,7 @@
         (srfi 11) ;; let-values
         (srfi 26)) ;; cut
     (export topological-sort
-            topological-sort/exception
-            circular-graph?
-            circular-graph-message
-            circular-graph-cycle
+            topological-sort/details
             edgelist->graph
             edgelist/inverted->graph
             graph->edgelist
