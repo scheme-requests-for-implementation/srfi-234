@@ -76,9 +76,9 @@ memory footprint of the graph small.</p>
 <code>(topological-sort </code><em>graph =</em><code>)</code><br>
 <code>(topological-sort </code><em>graph = nodes</em><code>)</code></p>
 
-<p><code>(topological-sort</code> returns only the
+<p><code>topological-sort</code> returns only the
 first <code>value</code>
-from <code>(topological-sort/details</code>.</p>
+from <code>topological-sort/details</code>.</p>
 
 <p><code>(topological-sort/details </code><em>graph</em><code>)</code><br>
 <code>(topological-sort/details </code><em>graph =</em><code>)</code><br>
@@ -93,7 +93,7 @@ meaning that <em>dependents</em> are dependent on <em>node</em>.</p>
 between nodes; it defaults to <code>equal?</code>. The optional
 argument <em>nodes</em> is a vector of node values.</p>
 
-<p><code>(topological-sort/details</code> returns
+<p><code>topological-sort/details</code> returns
 three <code>values</code>. The first value is a list of topologically
 sorted nodes or <code>#false</code> if the graph cannot be sorted
 topologically.</p>
